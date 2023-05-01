@@ -243,12 +243,13 @@ form{
 
 #main-content .post-content img{
   width: 100%;
+  aspect-ratio: 1/1;
 }
 
 #main-content .post-content .post-img{
   border: 3px solid #e7e7e7;
   display: block;
-  height: 145px;
+  height: 211px;
   overflow: hidden;
   transition: border .3s;
 }
@@ -258,7 +259,10 @@ form{
 #main-content .post-content .inner-content{
     /* border: 1px solid #000; */
 }
-
+.inner-content.clearfix {
+    height: auto;
+    min-height: 255px;
+}
 #main-content .post-content h3{
     font-size: 21px;
     line-height: 28px;

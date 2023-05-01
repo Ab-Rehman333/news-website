@@ -26,7 +26,7 @@
                     $sql = "SELECT * FROM category  ORDER BY category_id DESC  LIMIT {$offset}, {$limit}";
                     $result = mysqli_query($conn, $sql) or die("Querry couldn't connect to database");
                     $db_array = mysqli_fetch_all($result, MYSQLI_ASSOC);
-                    if (mysqli_num_rows($result) > 0) 
+                    if (mysqli_num_rows($result) > 0) :
 
                     ?>
                         <thead>
@@ -61,7 +61,7 @@
                             $total_pages = ceil($total_records / $limit);  // 3
                             echo "<ul class='pagination admin-pagination'>";
                             if ($page > 1) {
-                                echo '<li><a  href="post.php?page=' . ($page - 1) . ' ">Pre</a></li>';
+                                echo '<li><a  href="category.php?page=' . ($page - 1) . ' ">Pre</a></li>';
                             }
                             // loop throught them all the pages  and dispaly the results from specific limit values that we selected before
                             for ($i = 1; $i <= $total_pages; $i++) {
@@ -70,10 +70,10 @@
                                 } else {
                                     $active = "";
                                 }
-                                echo '<li class="' . $active . '"><a href="post.php?page=' . $i . ' " > ' . $i . '</a></li>';
+                                echo '<li class="' . $active . '"><a href="category.php?page=' . $i . ' " > ' . $i . '</a></li>';
                             }
                             if ($total_pages > $page) {  // 3 > 2
-                                echo '<li><a  href="post.php?page=' . ($page + 1) . ' ">Next</a></li>';
+                                echo '<li><a  href="category.php?page=' . ($page + 1) . ' ">Next</a></li>';
                             }
 
                             echo "</ul>";
