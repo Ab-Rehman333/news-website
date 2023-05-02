@@ -40,7 +40,7 @@
                                             <div class="post-information">
                                                 <span>
                                                     <i class="fa fa-tags" aria-hidden="true"></i>
-                                                    <a href='category.php'> <?= $row['category_name']; ?> </a>
+                                                    <a href='category.php?cid=<?= $row['category']; ?>'> <?= $row['category_name']; ?> </a>
                                                 </span>
                                                 <span>
                                                     <i class="fa fa-user" aria-hidden="true"></i>
