@@ -5,13 +5,19 @@
             <div class="col-md-8">
                 <!-- post-container -->
                 <div class="post-container">
-                    <h2 class="page-heading">Category Name</h2>
                     <?php
                     include "config.php";
                     if (isset($_GET['cid'])) {
 
                         $catid = $_GET['cid'];
                     }
+                    $sql_two = "SELECT   * FROM category WHERE category_id = {$catid} ";
+                    $result_two = mysqli_query($conn, $sql_two) or die("query failed in pagination");
+                    $row1 = mysqli_fetch_assoc($result_two);
+                    ?>
+                    <h2 class="page-heading"><?= $row1['category_name']; ?></h2>
+                    <?php
+
                     // set the limit whatever we want to show on the  page 
                     $limit = 3;
                     if (isset($_GET["page"])) {
@@ -22,7 +28,7 @@
 
                     // applying formula for finding the offset offset = (pageId - 1) * limit {limit means what ever you set the limit it's up to you }
                     $offset = ($page - 1) * $limit;
-                    $sql = "SELECT post.post_id , post.title, post.description,post.category,post.post_img,
+                    $sql = "SELECT post.post_id , post.title, post.description,post.category,post.post_img,post.author,
                     post.post_date, category.category_name, user.username FROM post
                     LEFT JOIN  category ON post.category = category.category_id
                     LEFT JOIN  user     ON post.author   = user.user_id  WHERE post.category = {$catid}
@@ -49,7 +55,7 @@
                                                 </span>
                                                 <span>
                                                     <i class="fa fa-user" aria-hidden="true"></i>
-                                                    <a href='author.php'><?= $row['username']; ?></a>
+                                                    <a href='author.php?aid=<?= $row['author']; ?>'><?= $row['username']; ?></a>
                                                 </span>
                                                 <span>
                                                     <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -87,9 +93,7 @@
                     } else {
                         echo "<h3>No Records Found</h3>";
                     }
-                    $sql_two = "SELECT   post FROM category WHERE category_id = {$catid} ";
-                    $result_two = mysqli_query($conn, $sql_two) or die("query failed in pagination");
-                    $row1 = mysqli_fetch_assoc($result_two);
+
                     if (mysqli_num_rows($result_two) > 0) :
                         // getting the total records length 
                         $total_records = $row1['post'];
