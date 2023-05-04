@@ -11,7 +11,7 @@
                 $post_id = $_GET['id'];
                 // applying formula for finding the offset offset = (pageId - 1) * limit {limit means what ever you set the limit it's up to you }
 
-                $sql = "SELECT post.post_id , post.title, post.description,post.category,post.post_img,
+                $sql = "SELECT post.post_id , post.title, post.description,post.category,post.post_img,post.author,
                     post.post_date, category.category_name, user.username FROM post
                     LEFT JOIN  category ON post.category = category.category_id
                     LEFT JOIN  user     ON post.author   = user.user_id  WHERE post.post_id = {$post_id} ";
@@ -36,7 +36,7 @@
                                     </span>
                                     <span>
                                         <i class="fa fa-user" aria-hidden="true"></i>
-                                        <a href='author.php'><?= $row['username']; ?></a>
+                                        <a href='author.php?aid=<?= $row['author']; ?>'><?= $row['username']; ?></a>
                                     </span>
                                     <span>
                                         <i class="fa fa-calendar" aria-hidden="true"></i>
